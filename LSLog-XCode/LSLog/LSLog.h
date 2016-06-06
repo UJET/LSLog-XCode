@@ -26,6 +26,7 @@
 
 
 typedef NS_ENUM(NSUInteger, LSLogLevel) {
+    LSLogLevelNone    = 1110000,
     LSLogLevelVerbose = 1111000,
     LSLogLevelInfo    = 1111001,
     LSLogLevelWarn    = 1111002,

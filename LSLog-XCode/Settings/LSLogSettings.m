@@ -72,7 +72,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_logLevelPrefixError) {
         _logLevelPrefixError = [self getConfigForKey:kKeyLogLevelPrefixError];
         if (!_logLevelPrefixError) {
-            _logLevelPrefixError = @"<ERROR>";
+            _logLevelPrefixError = @"[UJET][error]";
         }
     }
 
@@ -91,7 +91,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_logLevelPrefixWarn) {
         _logLevelPrefixWarn = [self getConfigForKey:kKeyLogLevelPrefixWarn];
         if (!_logLevelPrefixWarn) {
-            _logLevelPrefixWarn = @"<WARNING>";
+            _logLevelPrefixWarn = @"[UJET][warn]";
         }
     }
     
@@ -110,7 +110,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_logLevelPrefixVerbose) {
         _logLevelPrefixVerbose = [self getConfigForKey:kKeyLogLevelPrefixVerbose];
         if (!_logLevelPrefixVerbose) {
-            _logLevelPrefixVerbose = @"<VERBOSE>";
+            _logLevelPrefixVerbose = @"[UJET][verbose]";
         }
     }
     
@@ -129,7 +129,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_logLevelPrefixInfo) {
         _logLevelPrefixInfo = [self getConfigForKey:kKeyLogLevelPrefixInfo];
         if (!_logLevelPrefixInfo) {
-            _logLevelPrefixInfo = @"<INFO>";
+            _logLevelPrefixInfo = @"[UJET][info]";
         }
     }
     
@@ -193,7 +193,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_fgColorInfo) {
         _fgColorInfo = [self getColorForKey:kKeyFgColorInfo];
         if (!_fgColorInfo) {
-            _fgColorInfo = LS_COLOR_RGB(32, 32, 32);
+            _fgColorInfo = LS_COLOR_RGB(0, 0, 255);
         }
     }
     
@@ -209,7 +209,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_fgColorVerbose) {
         _fgColorVerbose = [self getColorForKey:kKeyFgColorVerbose];
         if (!_fgColorVerbose) {
-            _fgColorVerbose = LS_COLOR_RGB(0, 0, 255);
+            _fgColorVerbose = LS_COLOR_RGB(32, 80, 80);
         }
     }
     

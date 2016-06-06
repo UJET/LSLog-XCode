@@ -92,32 +92,37 @@ static const void *kLSLogLevelKey;
     }
     
     NSString *content = logText;
-    if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixError].location != NSNotFound) {
+    if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixError].location != NSNotFound || [logText rangeOfString:@"[UJET][fatal]"].location != NSNotFound) {
         [item setLogLevel:LSLogLevelError];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorError];
     } else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixWarn].location != NSNotFound) {
         [item setLogLevel:LSLogLevelWarn];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorWarn];
-    } else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixInfo].location != NSNotFound) {
+    }
+    else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixInfo].location != NSNotFound) {
         [item setLogLevel:LSLogLevelInfo];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorInfo];
-    } else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixVerbose].location != NSNotFound) {
+    }
+    else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixVerbose].location != NSNotFound || [logText rangeOfString:@"[UJET][debug]"].location != NSNotFound) {
         [item setLogLevel:LSLogLevelVerbose];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorVerbose];
     } else {
-        static NSArray *normalErrors = nil;
-        if (normalErrors == nil) {
-            normalErrors = @[@"Terminating app due to uncaught exception",
-                             @"unrecognized selector sent to",
-                             @"Assertion failure in"
-                            ];
-        }
-        for (NSString *err in normalErrors) {
-            if ([logText rangeOfString:err].location != NSNotFound) {
-                content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorError];
-                break;
-            }
-        }
+        NSColor *defaultColor = [NSColor colorWithRed:0 green:0 blue:0 alpha:1];
+        content = [self formatStringWithString:logText fgColor:defaultColor];
+        
+//        static NSArray *normalErrors = nil;
+//        if (normalErrors == nil) {
+//            normalErrors = @[@"Terminating app due to uncaught exception",
+//                             @"unrecognized selector sent to",
+//                             @"Assertion failure in"
+//                            ];
+//        }
+//        for (NSString *err in normalErrors) {
+//            if ([logText rangeOfString:err].location != NSNotFound) {
+//                content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorError];
+//                break;
+//            }
+//        }
     }
     
     [item setValue:content forKey:@"content"];
