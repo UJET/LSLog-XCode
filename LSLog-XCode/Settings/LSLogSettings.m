@@ -12,6 +12,7 @@
 NSString *kKeyLogLevelPrefixError = @"com.lessfun.LSLog.KeyLogLevelPrefixError";
 NSString *kKeyLogLevelPrefixWarn = @"com.lessfun.LSLog.KeyLogLevelPrefixWarn";
 NSString *kKeyLogLevelPrefixInfo = @"com.lessfun.LSLog.KeyLogLevelPrefixInfo";
+NSString *kKeyLogLevelPrefixDebug = @"com.lessfun.LSLog.KeyLogLevelPrefixDebug";
 NSString *kKeyLogLevelPrefixVerbose = @"com.lessfun.LSLog.KeyLogLevelPrefixVerbose";
 
 NSString *kKeyEnableColoring = @"com.lessfun.LSLog.KeyEnableColoring";
@@ -19,6 +20,7 @@ NSString *kKeyEnableColoring = @"com.lessfun.LSLog.KeyEnableColoring";
 NSString *kKeyFgColorError = @"com.lessfun.LSLog.KeyFgColorError";
 NSString *kKeyFgColorWarn = @"com.lessfun.LSLog.KeyFgColorWarn";
 NSString *kKeyFgColorInfo = @"com.lessfun.LSLog.KeyFgColorInfo";
+NSString *kKeyFgColorDebug = @"com.lessfun.LSLog.KeyFgColorDebug";
 NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
 
 //NSString *kKeyBgColorError = @"com.lessfun.LSLog.KeyBgColorError";
@@ -38,11 +40,13 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
 @synthesize logLevelPrefixError = _logLevelPrefixError;
 @synthesize logLevelPrefixWarn = _logLevelPrefixWarn;
 @synthesize logLevelPrefixInfo = _logLevelPrefixInfo;
+@synthesize logLevelPrefixDebug = _logLevelPrefixDebug;
 @synthesize logLevelPrefixVerbose = _logLevelPrefixVerbose;
 
 @synthesize fgColorError = _fgColorError;
 @synthesize fgColorWarn = _fgColorWarn;
 @synthesize fgColorInfo = _fgColorInfo;
+@synthesize fgColorDebug = _fgColorDebug;
 @synthesize fgColorVerbose = _fgColorVerbose;
 
 //@synthesize bgColorError = _bgColorError;
@@ -144,6 +148,25 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     [self setConfig:logLevelPrefixInfo forKey:kKeyLogLevelPrefixInfo];
 }
 
+- (NSString *)logLevelPrefixDebug {
+    if (!_logLevelPrefixDebug) {
+        _logLevelPrefixDebug = [self getConfigForKey:kKeyLogLevelPrefixDebug];
+        if (!_logLevelPrefixDebug) {
+            _logLevelPrefixDebug = @"[UJET][debug]";
+        }
+    }
+    
+    return _logLevelPrefixDebug;
+}
+
+- (void)setLogLevelPrefixDebug:(NSString *)logLevelPrefixDebug {
+    if (!logLevelPrefixDebug.length) {
+        return;
+    }
+    _logLevelPrefixDebug = logLevelPrefixDebug;
+    [self setConfig:logLevelPrefixDebug forKey:kKeyLogLevelPrefixDebug];
+}
+
 - (BOOL)enableColoring {
     self.enableColoringValue = [self getConfigForKey:kKeyEnableColoring];
     if (!self.enableColoringValue) {
@@ -161,7 +184,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_fgColorError) {
         _fgColorError = [self getColorForKey:kKeyFgColorError];
         if (!_fgColorError) {
-            _fgColorError = LS_COLOR_RGB(214, 57, 30);
+            _fgColorError = LS_COLOR_RGB(204, 0, 0);
         }
     }
     
@@ -177,7 +200,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_fgColorWarn) {
         _fgColorWarn = [self getColorForKey:kKeyFgColorWarn];
         if (!_fgColorWarn) {
-            _fgColorWarn = LS_COLOR_RGB(204, 121, 32);
+            _fgColorWarn = LS_COLOR_RGB(221, 119, 34);
         }
     }
     
@@ -193,7 +216,7 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     if (!_fgColorInfo) {
         _fgColorInfo = [self getColorForKey:kKeyFgColorInfo];
         if (!_fgColorInfo) {
-            _fgColorInfo = LS_COLOR_RGB(0, 0, 255);
+            _fgColorInfo = LS_COLOR_RGB(0, 0, 204);
         }
     }
     
@@ -205,11 +228,27 @@ NSString *kKeyFgColorVerbose = @"com.lessfun.LSLog.KeyFgColorVerbose";
     [self setColor:fgColorInfo forKey:kKeyFgColorInfo];
 }
 
+- (NSColor *)fgColorDebug {
+    if (!_fgColorDebug) {
+        _fgColorDebug = [self getColorForKey:kKeyFgColorDebug];
+        if (!_fgColorDebug) {
+            _fgColorDebug = LS_COLOR_RGB(102, 102, 102);
+        }
+    }
+    
+    return _fgColorDebug;
+}
+
+- (void)setFgColorDebug:(NSColor *)fgColorDebug {
+    _fgColorDebug = fgColorDebug;
+    [self setColor:fgColorDebug forKey:kKeyFgColorDebug];
+}
+
 - (NSColor *)fgColorVerbose {
     if (!_fgColorVerbose) {
         _fgColorVerbose = [self getColorForKey:kKeyFgColorVerbose];
         if (!_fgColorVerbose) {
-            _fgColorVerbose = LS_COLOR_RGB(32, 80, 80);
+            _fgColorVerbose = LS_COLOR_RGB(153, 153, 153);
         }
     }
     

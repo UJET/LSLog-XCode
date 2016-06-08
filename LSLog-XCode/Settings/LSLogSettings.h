@@ -13,12 +13,14 @@
 @property (strong, nonatomic) NSString *logLevelPrefixError; /**< default is '<ERROR>' */
 @property (strong, nonatomic) NSString *logLevelPrefixWarn; /**< default is '<WARNING>' */
 @property (strong, nonatomic) NSString *logLevelPrefixInfo; /**< default is '<INFO>' */
+@property (strong, nonatomic) NSString *logLevelPrefixDebug;
 @property (strong, nonatomic) NSString *logLevelPrefixVerbose; /**< default is '<VERBOSE>' */
 
 @property (assign, nonatomic) BOOL enableColoring; /**< default is 'YES' */
 @property (strong, nonatomic) NSColor *fgColorError; /**< default is '214, 57, 30' */
 @property (strong, nonatomic) NSColor *fgColorWarn; /**< default is '204, 121, 32' */
 @property (strong, nonatomic) NSColor *fgColorInfo; /**< default is '32, 32, 32' */
+@property (strong, nonatomic) NSColor *fgColorDebug;
 @property (strong, nonatomic) NSColor *fgColorVerbose; /**< default is '0, 0, 255' */
 
 //@property (strong, nonatomic) NSColor *bgColorError; /**< default is '255, 255, 255' */

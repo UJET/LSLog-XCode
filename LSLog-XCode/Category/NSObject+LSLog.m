@@ -103,7 +103,11 @@ static const void *kLSLogLevelKey;
         [item setLogLevel:LSLogLevelInfo];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorInfo];
     }
-    else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixVerbose].location != NSNotFound || [logText rangeOfString:@"[UJET][debug]"].location != NSNotFound) {
+    else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixDebug].location != NSNotFound) {
+        [item setLogLevel:LSLogLevelDebug];
+        content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorDebug];
+    }
+    else if ([logText rangeOfString:[LSLogSettings defaultSettings].logLevelPrefixVerbose].location != NSNotFound) {
         [item setLogLevel:LSLogLevelVerbose];
         content = [self formatStringWithString:logText fgColor:[LSLogSettings defaultSettings].fgColorVerbose];
     } else {
